@@ -61,5 +61,14 @@ table{
   width: 100%;
 }
 h1 {
+  margin-bottom: 40px;
   text-align: center;
+}
+.cpf-generated{
+  text-align: center;
+  font-size: 2em;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-bottom: 40px;
+  letter-spacing: 4px;
 }

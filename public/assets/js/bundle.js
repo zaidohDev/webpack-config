@@ -98,7 +98,7 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/
 exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap);"]);
 // Module
-exports.push([module.i, ":root {\n  --primary-color: rgb(17, 86, 102);\n  --primary-color-darker: rgb(9, 48, 56);\n}\n\n* {\n  box-sizing: border-box;\n  outline: 0;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--primary-color);\n  font-family: 'Open sans', sans-serif;\n  font-size: 1.3em;\n  line-height: 1.5em;\n}\n\n.container {\n  max-width: 640px;\n  margin: 50px auto;\n  background: #fff;\n  padding: 20px;\n  border-radius: 10px;\n}\n\nform input, form label, form button {\n  display: block;\n  width: 100%;\n  margin-bottom: 10px;\n}\n\nform input {\n  font-size: 24px;\n  height: 50px;\n  padding: 0 20px;\n}\n\nform input:focus {\n  outline: 1px solid var(--primary-color);\n}\n\nform button {\n  border: none;\n  background: var(--primary-color);\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  height: 50px;\n  cursor: pointer;\n  margin-top: 30px;\n}\n\nform button:hover {\n  background: var(--primary-color-darker);\n}\n\ntable{\n  width: 100%;\n}\nh1 {\n  text-align: center;\n}", ""]);
+exports.push([module.i, ":root {\n  --primary-color: rgb(17, 86, 102);\n  --primary-color-darker: rgb(9, 48, 56);\n}\n\n* {\n  box-sizing: border-box;\n  outline: 0;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--primary-color);\n  font-family: 'Open sans', sans-serif;\n  font-size: 1.3em;\n  line-height: 1.5em;\n}\n\n.container {\n  max-width: 640px;\n  margin: 50px auto;\n  background: #fff;\n  padding: 20px;\n  border-radius: 10px;\n}\n\nform input, form label, form button {\n  display: block;\n  width: 100%;\n  margin-bottom: 10px;\n}\n\nform input {\n  font-size: 24px;\n  height: 50px;\n  padding: 0 20px;\n}\n\nform input:focus {\n  outline: 1px solid var(--primary-color);\n}\n\nform button {\n  border: none;\n  background: var(--primary-color);\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  height: 50px;\n  cursor: pointer;\n  margin-top: 30px;\n}\n\nform button:hover {\n  background: var(--primary-color-darker);\n}\n\ntable{\n  width: 100%;\n}\nh1 {\n  margin-bottom: 40px;\n  text-align: center;\n}\n.cpf-generated{\n  text-align: center;\n  font-size: 2em;\n  color: var(--primary-color);\n  font-weight: bold;\n  margin-bottom: 40px;\n  letter-spacing: 4px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -483,7 +483,164 @@ module.exports = exported;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
 /* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_GenerateCpf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/GenerateCpf */ "./src/modules/GenerateCpf.js");
 
+
+
+(function () {
+  var generate = new _modules_GenerateCpf__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  var cpfGenerated = document.querySelector('.cpf-generated');
+  cpfGenerated.innerHTML = generate.generateNewCpf();
+})();
+
+/***/ }),
+
+/***/ "./src/modules/GenerateCpf.js":
+/*!************************************!*\
+  !*** ./src/modules/GenerateCpf.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GeratorCpf; });
+/* harmony import */ var _ValidCpf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ValidCpf */ "./src/modules/ValidCpf.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var GeratorCpf =
+/*#__PURE__*/
+function () {
+  function GeratorCpf() {
+    _classCallCheck(this, GeratorCpf);
+  }
+
+  _createClass(GeratorCpf, [{
+    key: "rand",
+    value: function rand() {
+      var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100000000;
+      var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 999999999;
+      return String(Math.floor(Math.random() * (max - min) + min));
+    }
+  }, {
+    key: "formated",
+    value: function formated(cpf) {
+      return cpf.slice(0, 3) + '.' + cpf.slice(3, 6) + '.' + cpf.slice(6, 9) + '-' + cpf.slice(9, 11);
+    }
+  }, {
+    key: "generateNewCpf",
+    value: function generateNewCpf() {
+      var cpfWithoutDigit = this.rand();
+      var digit1 = _ValidCpf__WEBPACK_IMPORTED_MODULE_0__["default"].createDigit(cpfWithoutDigit);
+      var digit2 = _ValidCpf__WEBPACK_IMPORTED_MODULE_0__["default"].createDigit(cpfWithoutDigit + digit1);
+      var newCpf = cpfWithoutDigit + digit1 + digit2;
+      return this.formated(newCpf);
+    }
+  }]);
+
+  return GeratorCpf;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/modules/ValidCpf.js":
+/*!*********************************!*\
+  !*** ./src/modules/ValidCpf.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ValidCpf; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ValidCpf =
+/*#__PURE__*/
+function () {
+  function ValidCpf(cpfSent) {
+    _classCallCheck(this, ValidCpf);
+
+    Object.defineProperty(this, 'cleanCpf', {
+      enumerable: true,
+      configurable: false,
+      get: function get() {
+        return cpfSent.replace(/\D+/g, '');
+      }
+    });
+  }
+
+  _createClass(ValidCpf, [{
+    key: "isSequence",
+    value: function isSequence() {
+      return this.cleanCpf.charAt(0).repeat(this.cleanCpf.length) === this.cleanCpf;
+    }
+  }, {
+    key: "generateNewCpf",
+    value: function generateNewCpf() {
+      var cpfPartial = this.cleanCpf.slice(0, -2);
+      var digit1 = ValidCpf.createDigit(cpfPartial);
+      var digit2 = ValidCpf.createDigit(cpfPartial + digit1);
+      var newCpf = cpfPartial + digit1 + digit2;
+      if (this.newCpf !== this.cleanCpf) return false;
+      return newCpf;
+    }
+  }, {
+    key: "valid",
+    value: function valid() {
+      if (!this.cleanCpf) return false;
+      if (typeof this.cleanCpf !== 'string') return false;
+      if (this.cleanCpf.length !== 11) return false;
+      if (this.isSequence()) return false;
+      this.generateNewCpf();
+      return true;
+    }
+  }], [{
+    key: "createDigit",
+    value: function createDigit(cpfPartial) {
+      // usando for
+      // let total = 0
+      // let reverse = cpfPartial.length + 1
+      // for (let stringNum of cpfPartial) {
+      //   total += (reverse * Number(stringNum))
+      //   reverse--
+      // }
+      //usando reduce
+      var cpfArray = Array.from(cpfPartial);
+      var regressive = cpfArray.length + 1;
+      var total = cpfArray.reduce(function (acc, val) {
+        acc += regressive * Number(val);
+        regressive--;
+        return acc;
+      }, 0);
+      var digit = 11 - total % 11;
+      return digit <= 9 ? String(digit) : '0';
+    }
+  }]);
+
+  return ValidCpf;
+}();
+
+
+var validCpf = new ValidCpf('629.580.973-15');
+
+if (validCpf.valid()) {
+  console.log('válido');
+} else {
+  console.log('inválido');
+}
 
 /***/ })
 
